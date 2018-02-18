@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-offset-3 col-sm-6">
+    <div class="col-sm-12">
       <br>
       <br>
       <br>
@@ -9,8 +9,9 @@
           <p class="lead text-center">Thanks! Complete Payment</p>
 
 	  <div class='card-wrapper'></div>
-          <%= form_tag({url: payment_path(session[:payment]['id']), method: :put}, {class: 'card-form'}) do %>
+          <%= form_tag({url: payment_path(session[:payment]['id'])}, {method: :put, class: 'card-form'}) do %>
             <br>
+            <%= hidden_field_tag :stripe_token, true %>
             <div class="row">
               <div class="col-xs-6">
                 <p>
