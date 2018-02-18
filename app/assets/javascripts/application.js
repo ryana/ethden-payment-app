@@ -11,6 +11,25 @@
 // about supported directives.
 //
 //= require jquery
+//= require card
 //= require rails-ujs
 //= require bootstrap-sprockets
-//= require_tree .
+
+$(function() {
+ var card = new Card({
+    form: '.card-form',
+    container: '.card-wrapper',
+
+    placeholders: {
+      number: '**** **** **** ****',
+      name: 'Arya Stark',
+      expiry: '**/****',
+      cvc: '***'
+    },
+
+    messages: {
+      validDate: 'expire\ndate',
+      monthYear: 'mm/yy'
+    }
+  });
+});

@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-  before_filter :ensure_active_payment, only: [:update, :show]
+  before_action :ensure_active_payment, only: [:update, :show]
 
   def create
     session[:payment] = {
@@ -9,7 +9,7 @@ class PaymentsController < ApplicationController
       redirect_url: params[:redirect_url]
     }
 
-    redirect_to payment_path(session[:payment][:id])
+    redirect_to payment_path(session[:payment]['id'])
   end
 
   def show
@@ -22,10 +22,10 @@ class PaymentsController < ApplicationController
     end
 
     if params[:stripe_token]
-      redirect_to session[:payment][:redirect_url]
+      redirect_to session[:payment]['redirect_url']
       session[:payment] = nil
     else
-      redirect_to payment_path(session[:payment][:id])
+      redirect_to payment_path(session[:payment]['id'])
     end
   end
 

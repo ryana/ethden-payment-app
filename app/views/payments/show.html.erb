@@ -1,28 +1,70 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <br>
-      <br>
+    <div class="col-sm-offset-3 col-sm-6">
       <br>
       <br>
       <br>
       <div class="well">
-        <div class="row">
-          <div class="col-xs-12">
-            <% if session[:verified] %>
-              <p class="lead text-center">Complete Payment</p>
-              <p>
+        <% if session[:verified] %>
+          <p class="lead text-center">Thanks! Complete Payment</p>
 
-              </p>
-            <% else %>
-              <p class="lead text-center">Verify Your Identity</p>
-              <p>
-              <%= link_to 'Verify Email', '#',
-                class: 'btn-disabled btn btn-block btn-default' %>
-            </p>
+	  <div class='card-wrapper'></div>
+          <%= form_tag({url: payment_path(session[:payment]['id']), method: :put}, {class: 'card-form'}) do %>
+            <br>
+            <div class="row">
+              <div class="col-xs-6">
+                <p>
+                <input type="text" placeholder="CC #" name="number" class="form-control">
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <p>
+                <input type="text" placeholder="Name" name="name" class="form-control"/>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 col-xs-6">
+                <p>
+                <input type="text" placeholder="MM/YYYY" name="expiry" class="form-control"/>
+                </p>
+              </div>
+              <div class="col-sm-4 col-xs-6">
+                <input type="text" placeholder="CVC" name="cvc" class="form-control"/>
+              </div>
+              <div class="col-sm-4">
+                <p>
+                <%= submit_tag "Submit Payment", class: 'btn btn-success btn-block', data: {disable_with: 'One moment...'} %>
+                </p>
+              </div>
+            </div>
           <% end %>
-          </div>
-        </div>
+        <% else %>
+          <p class="lead text-center">To continue w/ QuickETH, please verify your identity</p>
+          <br>
+          <p>
+          <%= link_to 'Verify Email', '#',
+            class: 'btn btn-block btn-default' %>
+          </p>
+          <p>
+          <%= link_to 'Verify Phone Number', '#',
+            class: 'btn btn-block btn-default' %>
+          </p>
+          <p>
+          <%= link_to 'Connect Facebook', '#',
+            class: 'btn btn-block btn-default' %>
+          </p>
+
+          <br>
+          <br>
+          <p>
+          <%= link_to 'Continue &raquo;'.html_safe,
+            payment_path(next: true, id: session[:payment]['id']),
+            data: {method: :put},
+            class: 'btn btn-block btn-success' %>
+          </p>
+
+        <% end %>
       </div>
     </div>
   </div>
