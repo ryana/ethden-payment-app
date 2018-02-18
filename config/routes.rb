@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
-  devise_for :users
-  resources :users
+  root to: 'welcome#index'
+
+  resources :payments, only: [:create, :show, :update]
 end

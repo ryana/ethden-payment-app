@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="well">
+        <div class="row">
+          <div class="col-xs-12">
+            <% if session[:verified] %>
+              <p class="lead text-center">Complete Payment</p>
+              <p>
+
+              </p>
+            <% else %>
+              <p class="lead text-center">Verify Your Identity</p>
+              <p>
+              <%= link_to 'Verify Email', '#',
+                class: 'btn-disabled btn btn-block btn-default' %>
+            </p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
