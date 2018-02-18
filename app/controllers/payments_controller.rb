@@ -3,10 +3,10 @@ class PaymentsController < ApplicationController
 
   def create
     session[:payment] = {
-      id: SecureRandom.uuid,
-      amount: params[:amount],
-      address: params[:address],
-      redirect_url: params[:redirect_url]
+      'id' => SecureRandom.uuid,
+      'amount' => params[:amount],
+      'address' => params[:address],
+      'redirect_url' => params[:redirect_url]
     }
 
     redirect_to payment_path(session[:payment]['id'])
@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
 
   def update
     if params[:next]
-      session[:verified] = true
+      session[:payment]['verified'] = true
     end
 
     if params[:stripe_token]

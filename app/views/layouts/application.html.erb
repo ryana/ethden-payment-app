@@ -7,8 +7,60 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
+
+    <style>
+      /* Sticky footer styles
+      -------------------------------------------------- */
+      html {
+	position: relative;
+	min-height: 100%;
+      }
+      body {
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
+      }
+      footer.footer {
+        margin-bottom: 0;
+      }
+      .footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+      }
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      .container {
+	width: auto;
+	max-width: 680px;
+	padding: 0 15px;
+      }
+      .container .text-muted {
+	margin: 20px 0;
+      }
+
+    </style>
   </head>
   <body>
     <%= yield %>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <p class="text-muted">
+            Made by <%= link_to "@angilly", "https://twitter.com/angilly", target: :_blank %>
+            at ETHDenver 2018.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
